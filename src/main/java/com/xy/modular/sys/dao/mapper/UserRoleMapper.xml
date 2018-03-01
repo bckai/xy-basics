@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：必须与对应的接口全类名一致 id:必须与对应接口的某个对应的方法名一致 -->
+<mapper namespace="com.xy.modular.sys.dao.UserRoleMapper">
+
+	<resultMap type="com.xy.modular.sys.entity.UserRole" id="userRole">
+		<result property="uid" column="uid" />
+		<result property="rid" column="rid" />
+	</resultMap>
+	<select id="findAll" resultMap="userRole">
+		select
+		*
+		from
+		sys_user_role
+	</select>
+</mapper>

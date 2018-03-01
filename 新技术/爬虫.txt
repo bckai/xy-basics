@@ -1,0 +1,23 @@
+HTML分析是一个比较复杂的工作，Java世界主要有几款比较方便的分析工具：
+
+1.Jsoup 
+Jsoup是一个集强大和便利于一体的HTML解析工具。它方便的地方是，可以用于支持用jQuery中css selector的方式选取元素，这对于熟悉js的开发者来说基本没有学习成本。
+
+String content = "blabla";
+Document doc = JSoup.parse(content);
+Elements links = doc.select("a[href]");
+
+Jsoup还支持白名单过滤机制，对于网站防止XSS攻击也是很好的。
+
+2.HtmlParser
+
+HtmlParser的功能比较完备，也挺灵活，但谈不上方便。这个项目很久没有维护了，最新版本是2.1。HtmlParser的核心元素是Node，对应一个HTML标签，支持getChildren()
+等树状遍历方式。HtmlParser另外一个核心元素是NodeFilter，通过实现NodeFilter接口，可以对页面元素进行筛选。这里有一篇HtmlParser的使用文章：使用 HttpClient 和 HtmlParser 实现简易爬虫。
+
+4.HtmlCleaner与XPath
+
+HtmlCleaner最大的优点是：支持XPath的方式选取元素。XPath是一门在XML中查找信息的语言，也可以用于抽取HTML元素。XPath与CSS Selector大部分功能都是重合的，
+但是CSS Selector专门针对HTML，写法更简洁，而XPath则是通用的标准，可以精确到属性值。XPath有一定的学习成本，但是对经常需要编写爬虫的人来说，这点投入绝对是值得的。
+
+
+BeautifulSoup库是HTML/XML解析器，它可以很好的处理不规范标记并生成剖析树，通常用来分析爬虫抓取的web文档，可以大大节省编程时间。

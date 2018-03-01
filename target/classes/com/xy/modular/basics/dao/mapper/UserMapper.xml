@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：必须与对应的接口全类名一致 id:必须与对应接口的某个对应的方法名一致 -->
+<mapper namespace="com.xy.modular.basics.dao.UserMapper">
+	<!-- mybsits_config中配置的alias类别名,也可直接配置resultType为类路劲 -->
+
+	<resultMap id="user" type="com.xy.modular.basics.entity.User">
+		<result property="id" column="id" />
+		<result property="createTime" column="create_time" />
+		<result property="modifyTime" column="modify_time" />
+		<result property="name" column="name" />
+		<result property="sex" column="sex" />
+		<result property="avatar" column="avatar" />
+		<result property="birthday" column="birthday" />
+		<result property="realName" column="real_name" />
+		<result property="userType" column="user_type" />
+	</resultMap>
+	<resultMap id="userInfo" extends="user"
+		type="com.xy.modular.basics.entity.User">
+		<association property="userAuths" column="id"
+			select="userMapper.getById"></association>
+	</resultMap>
+	<select id="findAll" resultMap="user">
+		select
+		id,name,sex,birthday,create_time,modify_time,real_name
+		from
+		basics_user
+	</select>
+
+	<select id="getById" resultMap="user" parameterType="string">
+		select
+		id,name,sex,birthday,real_name
+		from
+		basics_user where id=#{id}
+	</select>
+
+</mapper>  
